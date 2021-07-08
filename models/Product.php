@@ -29,7 +29,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'price', 'date_and_time'], 'required'],
-            [['price'], 'double'],
+            [['price'], 'match', 'pattern' => '/^(\d){1,9}+(\.\d\d)?$/'],
             [['date_and_time'], 'datetime', 'format' => 'yyyy-MM-dd H:i:s'],
             [['name'], 'string', 'max' => 255],
         ];
