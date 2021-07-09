@@ -7,3 +7,20 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
+  db:
+    image: postgres
+    restart: always
+    # Comment out the following two lines when deployed from Windows
+    # volumes:
+    #   - ./db/data/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data 
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports: 
+    - 5080:8080
