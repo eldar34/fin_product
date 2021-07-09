@@ -68,13 +68,16 @@ class SiteController extends Controller
 
     public function actionProduct()
     {
-        $test = 12;
+        
+        return $this->render('product');
+    }
+
+    public function actionTest()
+    {
         if (Yii::$app->request->isPost){
-            $test = 15;
+            $data = Yii::$app->request->post('date_and_time');
+            return $data;
         }
-        return $this->render('product', [
-            'test'=> $test,
-        ]);
     }
 
     /**
