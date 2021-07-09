@@ -44,7 +44,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            // ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Product', 'url' => ['/site/product']],
             ['label' => 'Swagger', 'url' => ['/documentation'], 'linkOptions' => ['target'=>'_blank']],
             /* ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -76,9 +76,17 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <div class="row">
+            <div class="col">
+                <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+            </div>
+            <div class="col col-auto">
+                <p class="pull-right"><?= Yii::powered() ?></p>
+            </div>
+        </div>
+        
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        
     </div>
 </footer>
 

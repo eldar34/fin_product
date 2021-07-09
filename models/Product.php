@@ -30,9 +30,26 @@ class Product extends \yii\db\ActiveRecord
         return [
             [['name', 'price', 'date_and_time'], 'required'],
             [['price'], 'match', 'pattern' => '/^(\d){1,9}+(\.\d\d)?$/'],
-            [['date_and_time'], 'datetime', 'format' => 'yyyy-MM-dd H:i:s'],
+            [['date_and_time'], 'datetime', 'format' => 'dd.MM.yyyy H:i:s'],
             [['name'], 'string', 'max' => 255],
         ];
+    }
+
+    public function beforeSave($insert){
+        
+        if($this->date_and_time){
+            $this->date_and_time = Yii::$app->formatter->asDate(strtotime($this->date_and_time), "php:Y-m-d H:i:s");
+            
+          }         
+
+        return parent::beforeSave($insert);
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->date_and_time = Yii::$app->formatter->asDate(strtotime($this->date_and_time), "php:d.m.Y H:i:s");
     }
 
     /**

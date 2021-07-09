@@ -3,10 +3,24 @@
 namespace app\controllers;
 
 use yii\rest\ActiveController;
+use app\models\Product;
+use yii\data\ActiveDataProvider;
 
 class ProductController extends ActiveController
 {
     public $modelClass = 'app\models\Product';
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+       
+        $behaviors['corsFilter']['class']= \yii\filters\Cors::className();
+        
+        // $behaviors['corsFilter']['сors']['Origin'] = ['http://www.github.com', 'https://www.github.com'];
+
+        return $behaviors;
+    }
 
 
 /**
@@ -39,5 +53,39 @@ class ProductController extends ActiveController
  * )
  *  
  */
+
+public function actions()
+{
+    $actions = parent::actions();
+
+    // настроить подготовку провайдера данных с помощью метода "prepareDataProvider()"
+    $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+
+    return $actions;
+}
+
+public function prepareDataProvider()
+{
+        // подготовить и вернуть провайдер данных для действия "index"
+        $query = Product::find();
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'date_and_time' => SORT_DESC
+                ]
+            ],
+        ]);
+        
+        // returns an array of Post objects
+        $products = $provider->getModels();
+
+        
+        return $products;
+}
 
 }

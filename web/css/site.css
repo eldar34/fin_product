@@ -127,3 +127,7 @@ a.desc:after {
 .no-border:focus {
     box-shadow: none;
 }
+
+.product_table {
+    visibility: collapse;
+}

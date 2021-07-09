@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Product;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -66,7 +68,13 @@ class SiteController extends Controller
 
     public function actionProduct()
     {
-        return $this->render('product');
+        $test = 12;
+        if (Yii::$app->request->isPost){
+            $test = 15;
+        }
+        return $this->render('product', [
+            'test'=> $test,
+        ]);
     }
 
     /**
