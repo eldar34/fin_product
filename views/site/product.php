@@ -100,16 +100,15 @@ function addProduct() {
         let newProduct = $('#productForm').serialize();
         $.ajax({
                 type: 'POST',
-                url: "<?= yii\helpers\Url::toRoute(['/site/test']); ?>",
+                url: "<?= yii\helpers\Url::toRoute(['/products']); ?>",
                 data: newProduct,
                 async: false,
                 success: function(data) {
-                    console.log(data);
-                    // $("input").removeClass("is-invalid");
-                    // $('#productForm')[0].reset();
-                    // $('#addProductButton').blur();
-                    // getProducts();
-                    // $('.product_table').css({"visibility": "visible"});
+                    $("input").removeClass("is-invalid");
+                    $('#productForm')[0].reset();
+                    $('#addProductButton').blur();
+                    getProducts();
+                    $('.product_table').css({"visibility": "visible"});
 
                 },
                 error: function(data) {

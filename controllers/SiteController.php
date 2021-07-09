@@ -72,14 +72,6 @@ class SiteController extends Controller
         return $this->render('product');
     }
 
-    public function actionTest()
-    {
-        if (Yii::$app->request->isPost){
-            $data = Yii::$app->request->post('date_and_time');
-            return $data;
-        }
-    }
-
     /**
      * Login action.
      *
