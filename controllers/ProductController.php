@@ -23,6 +23,17 @@ class ProductController extends ActiveController
     }
 
 
+ /**
+ * @OA\Info(title="Yii2-user-api", version="0.1")
+ * 
+ *  @OA\Schemes(format="http")
+ * 
+ *  @OA\Tag(
+ *     name="Product",
+ *     description="Products endpoints",
+ * )
+ */
+
 /**
  * 
  * @OA\Get(
